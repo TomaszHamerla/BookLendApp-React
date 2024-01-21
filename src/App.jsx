@@ -5,21 +5,11 @@ import { Books } from './components/Books'
 import { useState } from 'react'
 
 function App() {
-  const [usersState, setUsersState] = useState(false)
 
-  const handleUsersState = () => {
-    setUsersState(!usersState)
-  }
 
   return (
-    <div>
-      {usersState ? <Users /> : <div>
-        <button onClick={handleUsersState}>show users</button>
-        <Loans />
-        <Books />
-      </div>
-      }
-
+    <div className='container'>
+      <input type="text" className="input" placeholder='Searching phrase'/>
     </div>
   )
 }
