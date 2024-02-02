@@ -1,3 +1,4 @@
+import "./NavigationButtons.css"
 import React from "react";
 
 export const NavigationButtons = ({
@@ -14,7 +15,7 @@ export const NavigationButtons = ({
     <div>
       {activePage !== 'AddBook' ? (
         <>
-          <button onClick={() => handleButtonClick('AddBook' )}>
+          <button className="navBtn" onClick={() => handleButtonClick('AddBook' )}>
             Add book
           </button>
         </>
@@ -23,14 +24,14 @@ export const NavigationButtons = ({
       )}
       {activePage !== 'Users' ? (
         <>
-          <button onClick={() => handleButtonClick('Users')}>Users</button>
+          <button className="navBtn" onClick={() => handleButtonClick('Users')}>Users</button>
         </>
       ) : (
         <></>
       )}
       {activePage !== '0' ? (
         <>
-          <button onClick={() => handleButtonClick('0')}>Books</button>
+          <button className="navBtn" onClick={() => handleButtonClick('0')}>Books</button>
         </>
       ) : (
         <></>

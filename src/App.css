@@ -5,7 +5,7 @@
     height: 100vh;
 }
 .input{
-    margin-top: 10%;
+    margin-top: 5%;
     border-radius: 8px;
     height: 8%;
     width: 40%;
@@ -21,4 +21,7 @@
     color: black;
     font-size: 22px;
     padding-left: 40px;
+}
+.buttons-container{
+    margin-top: 5%;
 }
