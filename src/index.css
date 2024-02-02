@@ -10,7 +10,7 @@ body{
 .container::before,
 .container::after {
     content: "";
-    background-image: url('assets/books.jpeg'); /* Dodaj ścieżkę do lewego obrazka */
+    background-image: url('assets/books.jpeg'); 
     background-repeat: no-repeat;
     background-size: cover;
     position: absolute;
