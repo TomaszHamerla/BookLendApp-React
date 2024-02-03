@@ -1,63 +1,74 @@
+.container-books {
+  width: 40%;
+  margin: 30px 30%;
+  padding: 20px;
+  border: 1px solid #ccc;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+.availableStatus-container {
+  padding: 20px;
+  width: 40%;
+  position: relative;
+}
+.availableStatus {
+  border: 1px solid #ccc;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  position: absolute;
+  right: 0;
+}
 
-  
-  .container-books {
-    max-width: 800px;
-    margin: 50px auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
- 
-  .header {
-    color: #333;
-    margin-bottom: 10px;
-  }
-  
- 
-  .book-list {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .book-item {
-    margin-bottom: 5px;
-  }
-  
-  
-  .pagination {
-    margin-top: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  
-  .pagination-button {
-    background-color: #4caf50;
-    color: white;
-    padding: 8px 16px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    outline: none;
-  }
-  
-  .pagination-button:disabled {
-    background-color: #ddd;
-    cursor: not-allowed;
-  }
-  
-  .page-info {
-    margin: 0 10px;
-  }
-  
-  .page-size-select {
-    margin-left: 10px;
-  }
-  
-  
-  .select-box {
-    padding: 8px;
-    border-radius: 4px;
-  }
-  
+.header {
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.book-list {
+  list-style: none;
+  padding: 0;
+}
+
+.book-item {
+  margin-bottom: 5px;
+}
+
+.pagination {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pagination-button {
+  background-color: #4caf50;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  outline: none;
+}
+
+.pagination-button:disabled {
+  background-color: #ddd;
+  cursor: not-allowed;
+}
+
+.page-info {
+  margin: 0 10px;
+}
+
+.page-size-select {
+  margin-left: 10px;
+}
+.select-box {
+  padding: 8px;
+  border-radius: 4px;
+}
+.availableStatus-info {
+  margin: 0 10px;
+}
+.availableStatus-select {
+  padding: 5px;
+  border-radius: 4px;
+}

@@ -1,11 +1,9 @@
-import "./NavigationButtons.css"
+import "./NavigationButtons.css";
 import React from "react";
+import { AddBook } from "./books/AddBook";
 
-export const NavigationButtons = ({
-  handleActivePage,
-  activePage,
-  refreshPage,
-}) => {
+export const NavigationButtons = (props) => {
+  const { handleActivePage, refreshPage, activePage } = props;
   const handleButtonClick = (page) => {
     handleActivePage(page);
     refreshPage();
@@ -13,28 +11,20 @@ export const NavigationButtons = ({
 
   return (
     <div>
-      {activePage !== 'AddBook' ? (
-        <>
-          <button className="navBtn" onClick={() => handleButtonClick('AddBook' )}>
-            Add book
-          </button>
-        </>
-      ) : (
-        <></>
+      {activePage !== "AddBook" && (
+        <button className="navBtn" onClick={() => handleButtonClick("AddBook")}>
+          Add book
+        </button>
       )}
-      {activePage !== 'Users' ? (
-        <>
-          <button className="navBtn" onClick={() => handleButtonClick('Users')}>Users</button>
-        </>
-      ) : (
-        <></>
+      {activePage !== "Users" && (
+        <button className="navBtn" onClick={() => handleButtonClick("Users")}>
+          Users
+        </button>
       )}
-      {activePage !== '0' ? (
-        <>
-          <button className="navBtn" onClick={() => handleButtonClick('0')}>Books</button>
-        </>
-      ) : (
-        <></>
+      {activePage !== "0" && (
+        <button className="navBtn" onClick={() => handleButtonClick("0")}>
+          Books
+        </button>
       )}
     </div>
   );
