@@ -3,7 +3,7 @@ import { NavigationButtons } from "./components/NavigationButtons";
 import { AddBook } from "./components/books/AddBook";
 import { Books } from "./components/books/Books";
 import { useState } from "react";
-import {Users}from './components/Users'
+import { Users } from "./components/users/Users";
 
 function App() {
   const [searchPhrase, setSearchPhrase] = useState("");
@@ -14,7 +14,6 @@ function App() {
 
   const [activePage, setActivePage] = useState("0");
 
- 
   const refreshPage = () => {
     setActivePage((prevPgae) => prevPgae);
   };
@@ -23,7 +22,7 @@ function App() {
     <div className="container">
       <div className="buttons-container">
         <NavigationButtons
-          handleActivePage={(page)=>setActivePage(page)}
+          handleActivePage={(page) => setActivePage(page)}
           activePage={activePage}
           refreshPage={refreshPage}
         />

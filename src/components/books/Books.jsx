@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "./Books.css";
+import { RenderList } from "../RenderList";
 
 export const Books = ({ searchPhrase }) => {
-  const initialPageSize = 5;
-  const books = [
+  const list = [
     { id: 1, title: "book 1", status: true },
     { id: 2, title: "book 2", status: false },
     { id: 3, title: "book 3", status: true },
@@ -18,131 +18,9 @@ export const Books = ({ searchPhrase }) => {
     { id: 12, title: "book 12", status: false },
   ];
 
-  const [pageSize, setPageSize] = useState(initialPageSize);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
-  const [loanStatus, setLoanStatus] = useState(`-`);
-
-  useEffect(() => {
-    const calculateTotalPages = () => {
-      const filteredBooks = searchPhrase
-        ? books.filter((b) =>
-            b.title.toLowerCase().includes(searchPhrase.toLowerCase())
-          )
-        : books;
-
-      const totalBooks = filteredBooks.length;
-      const calculatedTotalPages = Math.ceil(totalBooks / pageSize);
-      setTotalPages(calculatedTotalPages);
-    };
-
-    calculateTotalPages();
-  }, [searchPhrase, books, pageSize]);
-
-  const startIndex = (currentPage - 1) * pageSize;
-  const endIndex = startIndex + pageSize;
-
-  const filterBooks = searchPhrase
-    ? books.filter((b) =>
-        b.title.toLowerCase().includes(searchPhrase.toLowerCase())
-      )
-    : books;
-
-  const [filtredBooks, setFiltredBooks] = useState(filterBooks);
-
-  useEffect(() => {
-    const applyFilters = () => {
-      let result = filterBooks;
-      if (loanStatus !== "-") {
-        result = result.filter(
-          (b) => b.status === (loanStatus === "Available")
-        );
-      }
-      setFiltredBooks(result);
-    };
-    applyFilters();
-  }, [filterBooks, loanStatus]);
-
-  const currentBooks = filtredBooks.slice(startIndex, endIndex);
-
-  const handlePageSizeChange = (newSize) => {
-    setPageSize(newSize);
-    setCurrentPage(1);
-  };
-
-  const handlePageChange = (newPage) => {
-    setCurrentPage(newPage);
-  };
-  const handleLoanStatus = (status) => {
-    setLoanStatus(status);
-  };
-
   return (
     <>
-      <div className="container-books">
-        {filterBooks.length > 0 ? (
-          <h2 className="header">Books</h2>
-        ) : (
-          <div className="header">No matchers</div>
-        )}
-        <ol className="book-list">
-          {currentBooks.map((b) => (
-            <li key={b.id} className="book-item">
-              {`Title : ${b.title} status : ${b.status}`}
-            </li>
-          ))}
-        </ol>
-        {(totalPages > 1 || pageSize >= filterBooks.length) && (
-          <div className="pagination">
-            <button
-              className="pagination-button"
-              onClick={() => handlePageChange(currentPage - 1)}
-              disabled={currentPage === 1}
-            >
-              Previous Page
-            </button>
-            <span className="page-info">
-              {" "}
-              Page {currentPage} of {totalPages}{" "}
-            </span>
-            <button
-              className="pagination-button"
-              onClick={() => handlePageChange(currentPage + 1)}
-              disabled={currentPage === totalPages}
-            >
-              Next Page
-            </button>
-            <span className="page-info"> | Page Size: </span>
-            <select
-              className="select-box"
-              value={pageSize}
-              onChange={(e) => handlePageSizeChange(parseInt(e.target.value))}
-            >
-              {[5, 10, 15].map((size) => (
-                <option key={size} value={size}>
-                  {size}
-                </option>
-              ))}
-            </select>
-          </div>
-        )}
-      </div>
-      <div className="availableStatus-container">
-        <div className="availableStatus">
-          <span className="availableStatus-info">
-            Search available status:{" "}
-          </span>
-          <select
-            className="availableStatus-select"
-            onChange={(e) => handleLoanStatus(e.target.value)}
-            value={loanStatus}
-          >
-            <option>-</option>
-            <option>Available</option>
-            <option>Unavailable</option>
-          </select>
-        </div>
-      </div>
+      <RenderList list={list} searchPhrase={searchPhrase} title={"Books"} />
     </>
   );
 };

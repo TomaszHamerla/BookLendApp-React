@@ -17,7 +17,10 @@ export const NavigationButtons = (props) => {
         </button>
       )}
       {activePage !== "Users" && (
-        <button className="navBtn" onClick={() => handleButtonClick("Users")}>
+        <button
+          className="navBtn"
+          onClick={() => handleButtonClick("Users")}
+        >
           Users
         </button>
       )}

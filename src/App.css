@@ -27,5 +27,6 @@
   margin-top: 5%;
   padding: 10px;
   border-radius: 5px;
+  align-items: center;
+  justify-content: center;
 }
-
