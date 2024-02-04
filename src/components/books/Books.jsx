@@ -4,23 +4,24 @@ import "./Books.css";
 export const Books = ({ searchPhrase }) => {
   const initialPageSize = 5;
   const books = [
-    { id: 1, title: "book 1" },
-    { id: 2, title: "book 2" },
-    { id: 3, title: "book 3" },
-    { id: 4, title: "book 4" },
-    { id: 5, title: "book 5" },
-    { id: 6, title: "book 6" },
-    { id: 7, title: "book 7" },
-    { id: 8, title: "book 8" },
-    { id: 9, title: "book 9" },
-    { id: 10, title: "book 10" },
-    { id: 11, title: "book 11" },
-    { id: 12, title: "book 12" },
+    { id: 1, title: "book 1", status: true },
+    { id: 2, title: "book 2", status: false },
+    { id: 3, title: "book 3", status: true },
+    { id: 4, title: "book 4", status: false },
+    { id: 5, title: "book 5", status: true },
+    { id: 6, title: "book 6", status: false },
+    { id: 7, title: "book 7", status: true },
+    { id: 8, title: "book 8", status: false },
+    { id: 9, title: "book 9", status: true },
+    { id: 10, title: "book 10", status: false },
+    { id: 11, title: "book 11", status: true },
+    { id: 12, title: "book 12", status: false },
   ];
 
   const [pageSize, setPageSize] = useState(initialPageSize);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const [loanStatus, setLoanStatus] = useState(`-`);
 
   useEffect(() => {
     const calculateTotalPages = () => {
@@ -47,7 +48,22 @@ export const Books = ({ searchPhrase }) => {
       )
     : books;
 
-  const currentBooks = filterBooks.slice(startIndex, endIndex);
+  const [filtredBooks, setFiltredBooks] = useState(filterBooks);
+
+  useEffect(() => {
+    const applyFilters = () => {
+      let result = filterBooks;
+      if (loanStatus !== "-") {
+        result = result.filter(
+          (b) => b.status === (loanStatus === "Available")
+        );
+      }
+      setFiltredBooks(result);
+    };
+    applyFilters();
+  }, [filterBooks, loanStatus]);
+
+  const currentBooks = filtredBooks.slice(startIndex, endIndex);
 
   const handlePageSizeChange = (newSize) => {
     setPageSize(newSize);
@@ -56,6 +72,9 @@ export const Books = ({ searchPhrase }) => {
 
   const handlePageChange = (newPage) => {
     setCurrentPage(newPage);
+  };
+  const handleLoanStatus = (status) => {
+    setLoanStatus(status);
   };
 
   return (
@@ -69,7 +88,7 @@ export const Books = ({ searchPhrase }) => {
         <ol className="book-list">
           {currentBooks.map((b) => (
             <li key={b.id} className="book-item">
-              {b.title}
+              {`Title : ${b.title} status : ${b.status}`}
             </li>
           ))}
         </ol>
@@ -113,7 +132,11 @@ export const Books = ({ searchPhrase }) => {
           <span className="availableStatus-info">
             Search available status:{" "}
           </span>
-          <select className="availableStatus-select">
+          <select
+            className="availableStatus-select"
+            onChange={(e) => handleLoanStatus(e.target.value)}
+            value={loanStatus}
+          >
             <option>-</option>
             <option>Available</option>
             <option>Unavailable</option>
