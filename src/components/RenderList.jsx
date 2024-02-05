@@ -11,13 +11,13 @@ export const RenderList = ({ list, searchPhrase, title }) => {
     const calculateTotalPages = () => {
       const filteredList = searchPhrase
         ? title === "Books"
-        ? list.filter((b) =>
-            b.title.toLowerCase().includes(searchPhrase.toLowerCase())
-          )
-        : list.filter((u) =>
-            u.lastName.toLowerCase().includes(searchPhrase.toLowerCase())
-          )
-      : list;
+          ? list.filter((b) =>
+              b.title.toLowerCase().includes(searchPhrase.toLowerCase())
+            )
+          : list.filter((u) =>
+              u.lastName.toLowerCase().includes(searchPhrase.toLowerCase())
+            )
+        : list;
 
       const totalListSize = filteredList.length;
       const calculatedTotalPages = Math.ceil(totalListSize / pageSize);
@@ -57,7 +57,7 @@ export const RenderList = ({ list, searchPhrase, title }) => {
   if (title === "Books") {
     const filteredBooksByStatus =
       loanStatus !== "-"
-        ? filterList.filter((b) => b.status === (loanStatus === "Available"))
+        ? filterList.filter((b) => b.available === (loanStatus === "Available"))
         : filterList;
     currentList = filteredBooksByStatus.slice(startIndex, endIndex);
   } else {
@@ -72,21 +72,32 @@ export const RenderList = ({ list, searchPhrase, title }) => {
         ) : (
           <div className="header">No matchers</div>
         )}
-        <ol className="book-list">
-          {title === "Books"
-            ? currentList.map((b) => (
-                <li key={b.id} className="book-item">
-                  {`Title: ${b.title} Status: ${
-                    b.status ? "Available" : "Unavailable"
-                  }`}
-                </li>
-              ))
-            : currentList.map((u) => (
-                <li key={u.id} className="book-item">
-                  {`Firstname: ${u.firstName} Lastname: ${u.lastName}`}
-                </li>
-              ))}
-        </ol>
+        <table className="book-list">
+          <thead>
+            <tr>
+              {title === "Books" ?<th>Title</th>:<th>Firstname</th>}
+              {title === "Books" ?<th>Author</th>:<th>Lastname</th>}
+              {title === "Books" ? <th>Status</th> : <></>}
+            </tr>
+          </thead>
+          <tbody>
+            {title === "Books"
+              ? currentList.map((b) => (
+                  <tr key={b.id} className="book-item">
+                    <td>{b.title}</td>
+                    <td>{b.author}</td>
+                    <td>{b.available ? "Available" : "Unavailable"}</td>
+                  </tr>
+                ))
+              : currentList.map((u) => (
+                  <tr key={u.id} className="book-item">
+                    <td>{`Firstname: ${u.firstName}`}</td>
+                    <td>{`Lastname: ${u.lastName}`}</td>
+                  </tr>
+                ))}
+          </tbody>
+        </table>
+
         {(totalPages > 1 || pageSize >= filterList.length) && (
           <div className="pagination">
             <button
