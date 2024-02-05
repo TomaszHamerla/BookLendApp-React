@@ -1,6 +1,6 @@
 .container-books {
   width: 40%;
-  margin: 30px 30%;
+  margin-top: 30px;
   padding: 20px;
   border: 1px solid #ccc;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
@@ -26,6 +26,11 @@
 .book-list {
   list-style: none;
   padding: 0;
+  margin: auto;
+}
+th,
+td {
+  padding-right: 35px;
 }
 
 .book-item {
