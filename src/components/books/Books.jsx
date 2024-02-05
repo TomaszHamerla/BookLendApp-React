@@ -11,8 +11,7 @@ export const Books = ({ searchPhrase }) => {
         "Content-Type": "application/json",
       },
     });
-    const books = await response.json();
-    console.log(books);
+    const books = await response.json();   
     setList(books);
   };
 
