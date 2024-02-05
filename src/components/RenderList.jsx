@@ -75,9 +75,9 @@ export const RenderList = ({ list, searchPhrase, title }) => {
         <table className="book-list">
           <thead>
             <tr>
-              {title === "Books" ?<th>Title</th>:<th>Firstname</th>}
-              {title === "Books" ?<th>Author</th>:<th>Lastname</th>}
-              {title === "Books" ? <th>Status</th> : <></>}
+              {title === "Books" ? <th>Title</th> : <th>Email</th>}
+              {title === "Books" ? <th>Author</th> : <th>Lastname</th>}
+              {title === "Books" ? <th>Status</th> : <th>Number of books</th>}
             </tr>
           </thead>
           <tbody>
@@ -91,8 +91,9 @@ export const RenderList = ({ list, searchPhrase, title }) => {
                 ))
               : currentList.map((u) => (
                   <tr key={u.id} className="book-item">
-                    <td>{`Firstname: ${u.firstName}`}</td>
-                    <td>{`Lastname: ${u.lastName}`}</td>
+                    <td>{u.email}</td>
+                    <td>{u.lastName}</td>
+                    <td>{u.books.length}</td>
                   </tr>
                 ))}
           </tbody>
