@@ -1,11 +1,29 @@
 import React, { useState, useEffect } from "react";
 import { BooksStatus } from "./books/BooksStatus";
+import { EditBookForm } from "./books/EditBookForm";
+import "./books/EditBookForm.css";
 
-export const RenderList = ({ list, searchPhrase, title }) => {
+export const RenderList = ({ list, searchPhrase, title, getBooks }) => {
   const initialPageSize = 5;
   const [pageSize, setPageSize] = useState(initialPageSize);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const [isEditing, setIsEditing] = useState(false);
+  const [selectedItem, setSelectedItem] = useState(null);
+
+  const toggleEditModal = (item) => {
+    setSelectedItem(item);
+    console.log(item);
+    setIsEditing(!isEditing);
+  };
+
+  const handleSave = (editedItem) => {
+    console.log("Saved:", editedItem);
+    setIsEditing(false);
+    if (title === "Books") {
+      getBooks();
+    }
+  };
 
   useEffect(() => {
     const calculateTotalPages = () => {
@@ -66,7 +84,7 @@ export const RenderList = ({ list, searchPhrase, title }) => {
 
   return (
     <>
-      <div className="container-books">
+      <div className={`container-books`}>
         {filterList.length > 0 ? (
           <h2 className="header">{title}</h2>
         ) : (
@@ -87,6 +105,14 @@ export const RenderList = ({ list, searchPhrase, title }) => {
                     <td>{b.title}</td>
                     <td>{b.author}</td>
                     <td>{b.available ? "Available" : "Unavailable"}</td>
+                    <td>
+                      <button
+                        className="editbtn"
+                        onClick={() => toggleEditModal(b)}
+                      >
+                        Edit
+                      </button>
+                    </td>
                   </tr>
                 ))
               : currentList.map((u) => (
@@ -98,6 +124,16 @@ export const RenderList = ({ list, searchPhrase, title }) => {
                 ))}
           </tbody>
         </table>
+        {isEditing && (
+          <>
+            <div className={`overlay ${isEditing ? "active" : ""}`}></div>
+            <div className="edit-modal">
+              <h2>Edit book</h2>
+              <EditBookForm selectedItem={selectedItem} onSave={handleSave} />
+              <button onClick={() => setIsEditing(false)}>Close</button>
+            </div>
+          </>
+        )}
 
         {(totalPages > 1 || pageSize >= filterList.length) && (
           <div className="pagination">
@@ -134,7 +170,7 @@ export const RenderList = ({ list, searchPhrase, title }) => {
           </div>
         )}
       </div>
-      {title === "Books" && (
+      {title === "Books" && !isEditing && (
         <BooksStatus
           loanStatus={loanStatus}
           handleLoanStatus={handleLoanStatus}

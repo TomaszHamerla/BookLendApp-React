@@ -21,7 +21,7 @@ export const Books = ({ searchPhrase }) => {
 
   return (
     <>
-      <RenderList list={list} searchPhrase={searchPhrase} title={"Books"} />
+      <RenderList list={list} searchPhrase={searchPhrase} title={"Books"} getBooks={getBooks} />
     </>
   );
 };

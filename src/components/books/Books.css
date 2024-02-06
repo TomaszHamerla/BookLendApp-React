@@ -77,3 +77,15 @@ td {
   padding: 5px;
   border-radius: 4px;
 }
+.editbtn {
+  background-color: rgb(197, 125, 18);
+  padding: 5px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  margin: 2px;
+}
+.editbtn:hover {
+  background-color: rgb(151, 97, 16);
+}
