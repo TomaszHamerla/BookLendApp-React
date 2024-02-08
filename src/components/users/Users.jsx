@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import "./Users.css";
 import { useState } from "react";
-import { Books } from "../books/Books";
 import { RenderList } from "../RenderList";
 
 export const Users = () => {

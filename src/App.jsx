@@ -4,6 +4,7 @@ import { AddBook } from "./components/books/AddBook";
 import { Books } from "./components/books/Books";
 import { useState } from "react";
 import { Users } from "./components/users/Users";
+import { AddUser } from "./components/users/AddUser";
 
 function App() {
   const [searchPhrase, setSearchPhrase] = useState("");
@@ -41,6 +42,7 @@ function App() {
       )}
       {activePage === "AddBook" && <AddBook />}
       {activePage === "Users" && <Users />}
+      {activePage === "AddUser" && <AddUser />}
     </div>
   );
 }

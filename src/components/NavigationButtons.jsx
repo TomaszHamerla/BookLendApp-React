@@ -17,11 +17,13 @@ export const NavigationButtons = (props) => {
         </button>
       )}
       {activePage !== "Users" && (
-        <button
-          className="navBtn"
-          onClick={() => handleButtonClick("Users")}
-        >
+        <button className="navBtn" onClick={() => handleButtonClick("Users")}>
           Users
+        </button>
+      )}
+      {activePage !== "AddUser" && (
+        <button className="navBtn" onClick={() => handleButtonClick("AddUser")}>
+          Add user
         </button>
       )}
       {activePage !== "0" && (

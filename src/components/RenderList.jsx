@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { BooksStatus } from "./books/BooksStatus";
 import { EditBookForm } from "./books/EditBookForm";
 import "./books/EditBookForm.css";
-import { Books } from "./books/Books";
 
 export const RenderList = ({ list, searchPhrase, title, getList }) => {
   const initialPageSize = 5;
