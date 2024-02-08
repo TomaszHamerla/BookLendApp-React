@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import { BooksStatus } from "./books/BooksStatus";
 import { EditBookForm } from "./books/EditBookForm";
 import "./books/EditBookForm.css";
+import { Books } from "./books/Books";
 
-export const RenderList = ({ list, searchPhrase, title, getBooks }) => {
+export const RenderList = ({ list, searchPhrase, title, getList }) => {
   const initialPageSize = 5;
   const [pageSize, setPageSize] = useState(initialPageSize);
   const [currentPage, setCurrentPage] = useState(1);
@@ -17,11 +18,22 @@ export const RenderList = ({ list, searchPhrase, title, getBooks }) => {
     setIsEditing(!isEditing);
   };
 
+  const handleDeleteBtn = async (item) => {
+    setSelectedItem(item);
+    if (confirm(`Do you want to delete a ${item.title}`)) {
+      console.log(item);
+      await fetch(`http://localhost:8080/books/${item.id}`, {
+        method: "DELETE",
+      });
+      getList();
+    }
+  };
+
   const handleSave = (editedItem) => {
     console.log("Saved:", editedItem);
     setIsEditing(false);
     if (title === "Books") {
-      getBooks();
+      getList();
     }
   };
 
@@ -113,6 +125,14 @@ export const RenderList = ({ list, searchPhrase, title, getBooks }) => {
                         Edit
                       </button>
                     </td>
+                    <td>
+                      <button
+                        className="deletebtn"
+                        onClick={() => handleDeleteBtn(b)}
+                      >
+                        Delete
+                      </button>
+                    </td>
                   </tr>
                 ))
               : currentList.map((u) => (
@@ -124,7 +144,7 @@ export const RenderList = ({ list, searchPhrase, title, getBooks }) => {
                 ))}
           </tbody>
         </table>
-        {isEditing && (
+        {isEditing && title === "Books" && (
           <>
             <div className={`overlay ${isEditing ? "active" : ""}`}></div>
             <div className="edit-modal">

@@ -89,3 +89,14 @@ td {
 .editbtn:hover {
   background-color: rgb(151, 97, 16);
 }
+.deletebtn {
+  background-color: rgb(209, 43, 43);
+  padding: 5px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+.deletebtn:hover {
+  background-color: rgb(145, 8, 8);
+}
