@@ -20,8 +20,12 @@ export const EditBookForm = ({ selectedItem, onSave }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const data = { title: editedBook.title, author: editedBook.author };
-    console.log(data);
+    const data = {};
+    for (const [key, value] of Object.entries(editedBook)) {
+      if (value !== "") {
+        data[key] = value;
+      }
+    }
     const json = JSON.stringify(data);
     console.log(editedBook.id);
 
@@ -40,12 +44,10 @@ export const EditBookForm = ({ selectedItem, onSave }) => {
       if (!response.ok) {
         throw new Error("An error occurred while saving changes.");
       }
-
-      
     } catch (error) {
       console.error(error);
     }
-    onSave(editedBook);
+    onSave(data);
   };
   return (
     <form onSubmit={handleSubmit}>
