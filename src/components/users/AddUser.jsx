@@ -19,7 +19,6 @@ export const AddUser = () => {
       },
       body: json,
     });
-    console.log(response);
     if (response.status === 201) {
       alert("User added");
     } else {

@@ -13,7 +13,7 @@ export const Users = () => {
       },
     });
     const users = await response.json();
-    setList(users);    
+    setList(users);
   };
 
   useEffect(() => {
@@ -33,7 +33,12 @@ export const Users = () => {
         value={searchPhrase}
         onChange={handleSearchPhrase}
       />
-      <RenderList list={list} searchPhrase={searchPhrase} title={"Users"} />
+      <RenderList
+        list={list}
+        searchPhrase={searchPhrase}
+        title={"Users"}
+        getList={getUsers}
+      />
     </>
   );
 };

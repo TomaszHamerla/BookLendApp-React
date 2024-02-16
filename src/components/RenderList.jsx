@@ -19,13 +19,22 @@ export const RenderList = ({ list, searchPhrase, title, getList }) => {
 
   const handleDeleteBtn = async (item) => {
     setSelectedItem(item);
-    if (confirm(`Do you want to delete a ${item.title}`)) {
-      console.log(item);
-      await fetch(`http://localhost:8080/books/${item.id}`, {
-        method: "DELETE",
-      });
-      getList();
+    if (title === "Books") {
+      if (confirm(`Do you want to delete a ${item.title}`)) {
+        console.log(item);
+        await fetch(`http://localhost:8080/books/${item.id}`, {
+          method: "DELETE",
+        });
+      }
+    } else {
+      if (confirm(`Do you want to delete a ${item.lastName}`)) {
+        console.log(item);
+        await fetch(`http://localhost:8080/users/${item.id}`, {
+          method: "DELETE",
+        });
+      }
     }
+    getList();
   };
 
   const handleSave = (editedItem) => {
@@ -139,6 +148,17 @@ export const RenderList = ({ list, searchPhrase, title, getList }) => {
                     <td>{u.email}</td>
                     <td>{u.lastName}</td>
                     <td>{u.books.length}</td>
+                    <td>
+                      <button className="editbtn">Edit</button>
+                    </td>
+                    <td>
+                      <button
+                        className="deletebtn"
+                        onClick={() => handleDeleteBtn(u)}
+                      >
+                        Delete
+                      </button>
+                    </td>
                   </tr>
                 ))}
           </tbody>
