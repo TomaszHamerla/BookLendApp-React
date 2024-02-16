@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { BooksStatus } from "./books/BooksStatus";
 import { EditBookForm } from "./books/EditBookForm";
 import "./books/EditBookForm.css";
+import { EditUserForm } from "./users/EditUserForm";
 
 export const RenderList = ({ list, searchPhrase, title, getList }) => {
   const initialPageSize = 5;
@@ -40,9 +41,7 @@ export const RenderList = ({ list, searchPhrase, title, getList }) => {
   const handleSave = (editedItem) => {
     console.log("Saved:", editedItem);
     setIsEditing(false);
-    if (title === "Books") {
-      getList();
-    }
+    getList();
   };
 
   useEffect(() => {
@@ -149,7 +148,12 @@ export const RenderList = ({ list, searchPhrase, title, getList }) => {
                     <td>{u.lastName}</td>
                     <td>{u.books.length}</td>
                     <td>
-                      <button className="editbtn">Edit</button>
+                      <button
+                        className="editbtn"
+                        onClick={() => toggleEditModal(u)}
+                      >
+                        Edit
+                      </button>
                     </td>
                     <td>
                       <button
@@ -169,6 +173,16 @@ export const RenderList = ({ list, searchPhrase, title, getList }) => {
             <div className="edit-modal">
               <h2>Edit book</h2>
               <EditBookForm selectedItem={selectedItem} onSave={handleSave} />
+              <button onClick={() => setIsEditing(false)}>Close</button>
+            </div>
+          </>
+        )}
+        {isEditing && title === "Users" && (
+          <>
+            <div className={`overlay ${isEditing ? "active" : ""}`}></div>
+            <div className="edit-modal">
+              <h2>Edit user</h2>
+              <EditUserForm selectedItem={selectedItem} onSave={handleSave} />
               <button onClick={() => setIsEditing(false)}>Close</button>
             </div>
           </>
