@@ -30,6 +30,11 @@ export const NavigationButtons = (props) => {
           Books
         </button>
       )}
+      {activePage !== "Loans" && (
+        <button className="navBtn" onClick={() => handleButtonClick("Loans")}>
+          Loans
+        </button>
+      )}
     </div>
   );
 };

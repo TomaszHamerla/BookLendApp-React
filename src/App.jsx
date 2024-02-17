@@ -1,10 +1,11 @@
+import { useState } from "react";
 import "./App.css";
 import { NavigationButtons } from "./components/NavigationButtons";
 import { AddBook } from "./components/books/AddBook";
 import { Books } from "./components/books/Books";
-import { useState } from "react";
-import { Users } from "./components/users/Users";
+import { Loans } from "./components/losns/Loans";
 import { AddUser } from "./components/users/AddUser";
+import { Users } from "./components/users/Users";
 
 function App() {
   const [searchPhrase, setSearchPhrase] = useState("");
@@ -43,6 +44,7 @@ function App() {
       {activePage === "AddBook" && <AddBook />}
       {activePage === "Users" && <Users />}
       {activePage === "AddUser" && <AddUser />}
+      {activePage === "Loans" && <Loans />}
     </div>
   );
 }
