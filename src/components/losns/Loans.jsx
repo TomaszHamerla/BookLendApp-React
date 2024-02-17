@@ -51,6 +51,40 @@ export const Loans = () => {
             </div>
           </div>
         </div>
+        <div className="dataTable">
+          <div className="title">Tomasz</div>
+          <div className="books">
+            <div className="data">
+              <div>Harry Potter 1</div>
+              <button>Return book</button>
+            </div>
+          </div>
+        </div>
+        <div className="dataTable">
+          <div className="title">Tomasz</div>
+          <div className="books">
+            <div className="data">
+              <div>Harry Potter 1</div>
+              <button>Return book</button>
+            </div>
+          </div>
+        </div>
+        <div className="dataTable">
+          <div className="title">Tomasz</div>
+          <div className="books">
+            <div className="data">
+              <div>Harry Potter 1</div>
+              <button>Return book</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="inputDiv">
+        <input
+          type="text"
+          className="loansInput"
+          placeholder="Searching by lastname"
+        />
       </div>
     </div>
   );

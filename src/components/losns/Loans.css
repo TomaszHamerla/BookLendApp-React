@@ -1,14 +1,19 @@
 .loanTable {
   border: 1px solid #ccc;
+  border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   width: auto;
-  display: table;
+  /* display: table; */
+  overflow-y: auto;
+  max-height: 590px;
 }
-
 .titleTable {
   box-sizing: border-box;
   font-size: 14px;
   display: table-header-group;
+  position: sticky;
+  top: 0;
+  background-color: #c5c0c0;
 }
 
 .dataTable {
@@ -49,4 +54,25 @@
 }
 .dataTable button:hover {
   background-color: #0056b3;
+}
+.inputDiv {
+  display: flex;
+  height: 80px;
+}
+.loansInput {
+  margin-top: 5%;
+  border-radius: 8px;
+  width: 100%;
+  outline: none;
+  border: none;
+  background: grey;
+  color: black;
+  font-size: 22px;
+  cursor: pointer;
+  padding-left: 40px;
+}
+.loansInput::placeholder {
+  color: black;
+  font-size: 22px;
+  padding-left: 40px;
 }
