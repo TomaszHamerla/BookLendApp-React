@@ -4,9 +4,13 @@ import "./Loans.css";
 export const Loans = () => {
   const [list, setList] = useState([]);
   const [isChecked, setIsChecked] = useState(false);
+  const [searchPhrase, setSearchPhrase] = useState("");
 
   const handleToggle = () => {
     setIsChecked(!isChecked);
+  };
+  const handleSearchChange = (e) => {
+    setSearchPhrase(e.target.value);
   };
 
   const getLoans = async () => {
@@ -36,13 +40,19 @@ export const Loans = () => {
     setList(archiveLoans);
   };
 
+  const filterList = searchPhrase
+    ? list.filter((el) =>
+        el.lastName.toLowerCase().includes(searchPhrase.toLowerCase())
+      )
+    : list;
+
   useEffect(() => {
     if (!isChecked) {
       getLoans();
     } else {
       getArchiveLoans();
     }
-  }, [handleToggle]);
+  }, [handleToggle,searchPhrase]);
   return (
     <div>
       <div className="header">
@@ -57,7 +67,7 @@ export const Loans = () => {
             <h2>Books</h2>
           </div>
         </div>
-        {list.map((l) => (
+        {filterList.map((l) => (
           <div key={l.loanId} className="dataTable">
             <div className="title">{l.lastName}</div>
             <div className="books">
@@ -75,6 +85,8 @@ export const Loans = () => {
           type="text"
           className="loansInput"
           placeholder="Searching by lastname"
+          onChange={handleSearchChange}
+          value={searchPhrase}
         />
       </div>
       <div className="Archive">
