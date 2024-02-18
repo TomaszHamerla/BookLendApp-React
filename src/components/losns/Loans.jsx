@@ -39,6 +39,13 @@ export const Loans = () => {
     const archiveLoans = await response.json();
     setList(archiveLoans);
   };
+  const returnBook = async (loanId) => {
+    if (confirm(`Are you sure to return this book ?`)) {
+      await fetch(`http://localhost:8080/loans/${loanId}`, {
+        method: "PATCH",
+      });
+    }
+  };
 
   const filterList = searchPhrase
     ? list.filter((el) =>
@@ -52,7 +59,7 @@ export const Loans = () => {
     } else {
       getArchiveLoans();
     }
-  }, [handleToggle,searchPhrase]);
+  }, [handleToggle, searchPhrase, returnBook]);
   return (
     <div>
       <div className="header">
@@ -74,7 +81,11 @@ export const Loans = () => {
               <div className="data">
                 <div>{l.book.title}</div>
                 {isChecked && <div>Loan date: {l.loanDate}</div>}
-                <button>Return book</button>
+                {!isChecked && (
+                  <button onClick={() => returnBook(l.loanId)}>
+                    Return book
+                  </button>
+                )}
               </div>
             </div>
           </div>
