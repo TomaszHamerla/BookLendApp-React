@@ -214,7 +214,7 @@ export const RenderList = ({ list, searchPhrase, title, getList }) => {
               value={pageSize}
               onChange={(e) => handlePageSizeChange(parseInt(e.target.value))}
             >
-              {[5, 10, 15].map((size) => (
+              {[5, 10].map((size) => (
                 <option key={size} value={size}>
                   {size}
                 </option>
