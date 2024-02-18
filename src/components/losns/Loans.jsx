@@ -3,6 +3,12 @@ import "./Loans.css";
 
 export const Loans = () => {
   const [list, setList] = useState([]);
+  const [isChecked, setIsChecked] = useState(false);
+
+  const handleToggle = () => {
+    setIsChecked(!isChecked);
+  };
+
   const getLoans = async () => {
     const response = await fetch(
       "http://localhost:8080/loans/searchByLoanStatus?status=true",
@@ -16,10 +22,27 @@ export const Loans = () => {
     const loans = await response.json();
     setList(loans);
   };
+  const getArchiveLoans = async () => {
+    const response = await fetch(
+      "http://localhost:8080/loans/searchByLoanStatus?status=false",
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    const archiveLoans = await response.json();
+    setList(archiveLoans);
+  };
 
   useEffect(() => {
-    getLoans();
-  }, []);
+    if (!isChecked) {
+      getLoans();
+    } else {
+      getArchiveLoans();
+    }
+  }, [handleToggle]);
   return (
     <div>
       <div className="header">
@@ -40,6 +63,7 @@ export const Loans = () => {
             <div className="books">
               <div className="data">
                 <div>{l.book.title}</div>
+                {isChecked && <div>Loan date: {l.loanDate}</div>}
                 <button>Return book</button>
               </div>
             </div>
@@ -52,6 +76,12 @@ export const Loans = () => {
           className="loansInput"
           placeholder="Searching by lastname"
         />
+      </div>
+      <div className="Archive">
+        <label>
+          <input type="checkbox" checked={isChecked} onChange={handleToggle} />
+          <span> Show archived book borrowings</span>
+        </label>
       </div>
     </div>
   );
