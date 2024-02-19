@@ -3,9 +3,8 @@
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   width: auto;
-  /* display: table; */
   overflow-y: auto;
-  max-height: 590px;
+  max-height: 550px;
 }
 .titleTable {
   box-sizing: border-box;
