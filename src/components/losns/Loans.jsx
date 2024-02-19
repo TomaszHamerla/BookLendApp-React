@@ -32,6 +32,7 @@ export const Loans = () => {
         method: "PATCH",
       });
     }
+    getLoans();
   };
 
   const filterList = searchPhrase
@@ -46,7 +47,7 @@ export const Loans = () => {
     } else {
       getLoans(false);
     }
-  }, [handleToggle, searchPhrase, returnBook]);
+  }, [searchPhrase,isChecked]);
   return (
     <div>
       <div className="header">
