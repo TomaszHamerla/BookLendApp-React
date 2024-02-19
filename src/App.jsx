@@ -3,6 +3,7 @@ import "./App.css";
 import { NavigationButtons } from "./components/NavigationButtons";
 import { AddBook } from "./components/books/AddBook";
 import { Books } from "./components/books/Books";
+import { SelectUser } from "./components/borrowBook/SelectUser";
 import { Loans } from "./components/losns/Loans";
 import { AddUser } from "./components/users/AddUser";
 import { Users } from "./components/users/Users";
@@ -45,6 +46,7 @@ function App() {
       {activePage === "Users" && <Users />}
       {activePage === "AddUser" && <AddUser />}
       {activePage === "Loans" && <Loans />}
+      {activePage === "SelectUser" && <SelectUser />}
     </div>
   );
 }

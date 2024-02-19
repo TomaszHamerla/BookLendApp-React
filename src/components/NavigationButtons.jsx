@@ -10,11 +10,6 @@ export const NavigationButtons = (props) => {
 
   return (
     <div>
-      {activePage !== "AddBook" && (
-        <button className="navBtn" onClick={() => handleButtonClick("AddBook")}>
-          Add book
-        </button>
-      )}
       {activePage !== "Users" && (
         <button className="navBtn" onClick={() => handleButtonClick("Users")}>
           Users
@@ -25,6 +20,11 @@ export const NavigationButtons = (props) => {
           Add user
         </button>
       )}
+      {activePage !== "AddBook" && (
+        <button className="navBtn" onClick={() => handleButtonClick("AddBook")}>
+          Add book
+        </button>
+      )}
       {activePage !== "0" && (
         <button className="navBtn" onClick={() => handleButtonClick("0")}>
           Books
@@ -33,6 +33,14 @@ export const NavigationButtons = (props) => {
       {activePage !== "Loans" && (
         <button className="navBtn" onClick={() => handleButtonClick("Loans")}>
           Loans
+        </button>
+      )}
+      {activePage !== "SelectUser" && (
+        <button
+          className="navBtn"
+          onClick={() => handleButtonClick("SelectUser")}
+        >
+          Borrow Book
         </button>
       )}
     </div>
