@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
+import { SelectBook } from "./SelectBook";
 
 export const SelectUser = () => {
   const [list, setList] = useState([]);
   const [isEditing, setIsEditing] = useState(false);
-  const [selectedItem, setSelectedItem] = useState(null);
+  const [selectedUser, setSelectedUser] = useState(null);
 
   const toggleEdit = (user) => {
-    setSelectedItem(user);
+    setSelectedUser(user);
     console.log(user);
     setIsEditing(!isEditing);
   };
@@ -21,6 +22,10 @@ export const SelectUser = () => {
     const users = await response.json();
     setList(users);
   };
+
+  const handleBorrow=()=>{
+    setIsEditing(false)
+  }
 
   useEffect(() => {
     getUsers();
@@ -54,7 +59,7 @@ export const SelectUser = () => {
           <div className={`overlay ${isEditing ? "active" : ""}`}></div>
           <div className="edit-modal">
             <h2>Select book </h2>
-
+            <SelectBook  selectedUser={selectedUser} handleBorrow={handleBorrow}/>
             <button onClick={() => setIsEditing(false)}>Close</button>
           </div>
         </>
