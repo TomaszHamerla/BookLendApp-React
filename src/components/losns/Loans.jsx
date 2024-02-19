@@ -13,9 +13,9 @@ export const Loans = () => {
     setSearchPhrase(e.target.value);
   };
 
-  const getLoans = async () => {
+  const getLoans = async (status=true) => {
     const response = await fetch(
-      "http://localhost:8080/loans/searchByLoanStatus?status=true",
+      `http://localhost:8080/loans/searchByLoanStatus?status=${status}`,
       {
         method: "GET",
         headers: {
@@ -26,20 +26,7 @@ export const Loans = () => {
     const loans = await response.json();
     setList(loans);
   };
-  const getArchiveLoans = async () => {
-    const response = await fetch(
-      "http://localhost:8080/loans/searchByLoanStatus?status=false",
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-    const archiveLoans = await response.json();
-    setList(archiveLoans);
-  };
-  const returnBook = async (loanId) => {
+   const returnBook = async (loanId) => {
     if (confirm(`Are you sure to return this book ?`)) {
       await fetch(`http://localhost:8080/loans/${loanId}`, {
         method: "PATCH",
@@ -57,7 +44,7 @@ export const Loans = () => {
     if (!isChecked) {
       getLoans();
     } else {
-      getArchiveLoans();
+      getLoans(false);
     }
   }, [handleToggle, searchPhrase, returnBook]);
   return (
