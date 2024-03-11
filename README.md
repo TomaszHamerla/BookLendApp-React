@@ -42,7 +42,7 @@ npm install
 
 Here's the demo of my application, consisting solely of the front-end without backend integration. You can see how the user interface visually operates and what features are available.
 
-👉 [Click here to see the demo](https://booklenddemo.azurewebsites.net/?fbclid=IwAR2DkTmPaGp6Lg68SZ9CPX32AszbBQi2uesWfgtS_ynUgAGsDc46w9J-xBY)
+👉 [Click here to see the demo  Wait a few seconds, it's free!](https://booklenddemo.azurewebsites.net/?fbclid=IwAR2DkTmPaGp6Lg68SZ9CPX32AszbBQi2uesWfgtS_ynUgAGsDc46w9J-xBY)
 
 
 
